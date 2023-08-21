@@ -1,6 +1,4 @@
 import { UserSession, Store, Route, ActiveObjectServer, v1Endpoints, GithubMock } from '../lib/registry.mjs';
-import http from 'node:http';
-const httpServer = http.createServer();
 export class SpecsHelper {
     static async getStoreToken() {
         return process.env.GIT;
@@ -37,7 +35,7 @@ export class SpecsHelper {
         await store.remove();
     }
     static async ctorActiveObjectServer() {
-        return new ActiveObjectServer({ httpServer });
+        return new ActiveObjectServer();
     }
     static async ctorGithubMock() {
         return new GithubMock();
@@ -102,7 +100,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpCreateConfig(clearStore = true, args = { username: 'Joe', passphrase: 'Joe1234', content: { className: 'HelloWorld', language: 'JavaScript', dependencyInjection: false } }) {
@@ -116,7 +113,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers, body: JSON.stringify(args.content) });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpDeleteConfig(clearStore = true, args = { username: 'Joe', passphrase: 'Joe1234' }) {
@@ -130,7 +126,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers, body: JSON.stringify(args.content) });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpGetConfigExists() {
@@ -157,7 +152,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpCreateClass(clearStore = true, args = { username: 'Joe', passphrase: 'Joe1234', content: `class HelloWorld { sayHello() { console.log("hello"); }}` }) {
@@ -171,7 +165,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers, body: args.content });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpDeleteClass(clearStore = true, args = { username: 'Joe', passphrase: 'Joe1234' }) {
@@ -185,7 +178,6 @@ export class SpecsHelper {
         const server = await SpecsHelper.ctorActiveObjectServer();
         await server.start();
         const response = await fetch(url, { method, headers, body: args.content });
-        await server.stop();
         return response;
     }
     static async activeObjectServerHttpGetClassExists() {

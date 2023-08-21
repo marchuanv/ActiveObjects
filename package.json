@@ -18,8 +18,8 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node index.mjs",
-    "test": "node specs/index.mjs",
+    "start": "cross-env INFO={\\\"isProduction\\\":true,\\\"logging\\\":{\\\"enabled\\\":true,\\\"onExit\\\":false}} node index.mjs",
+    "test": "cross-env INFO={\\\"isProduction\\\":false,\\\"logging\\\":{\\\"enabled\\\":false,\\\"onExit\\\":true}} node index.mjs",
     "test2": "nodemon specs/index.mjs"
   },
   "homepage": "https://github.com/marchuanv/active-objects#readme",
@@ -29,6 +29,7 @@
     "utils": "marchuanv/utils"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jasmine": "^5.0.2",
     "nodemon": "^2.0.22"
   }

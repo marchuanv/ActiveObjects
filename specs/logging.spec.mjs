@@ -1,4 +1,4 @@
-import { Logging } from '../lib/container/logging.mjs';
+import { Logging } from '../lib/logging.mjs';
 describe('when logging messages given context', () => {
     let logging;
     beforeAll((done) => {

@@ -20,8 +20,7 @@
   "scripts": {
     "start": "cross-env INFO={\\\"isProduction\\\":true,\\\"logging\\\":{\\\"enabled\\\":true,\\\"onExit\\\":false}} node index.mjs",
     "pretest": "npm uninstall module-container && npm install github:marchuanv/module-container",
-    "test": "cross-env INFO={\\\"isProduction\\\":false,\\\"logging\\\":{\\\"enabled\\\":false,\\\"onExit\\\":true}} node index.mjs",
-    "test2": "nodemon specs/index.mjs"
+    "test": "cross-env INFO={\\\"isProduction\\\":false,\\\"logging\\\":{\\\"enabled\\\":true,\\\"onExit\\\":true}} node index.mjs"
   },
   "homepage": "https://github.com/marchuanv/active-objects#readme",
   "dependencies": {
